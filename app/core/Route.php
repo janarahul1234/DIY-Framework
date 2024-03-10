@@ -32,13 +32,13 @@ class Route
 
         if (str_contains($callback[0][0], 'App')) {
             $callback[0][0] = new $callback[0][0]();
-            $this->layout = $callback[0][0]->layout;
+            $this->layout = $callback[0][0]->layout ?? '';
             return call_user_func_array([$callback[0][0], $callback[0][1] ?? 'index'], $callback[1]);
         }
 
         if (str_contains($callback[0], 'App')) {
             $callback[0] = new $callback[0]();
-            $this->layout = $callback[0]->layout;
+            $this->layout = $callback[0]->layout ?? '';
             return call_user_func([$callback[0], $callback[1] ?? 'index']);
         }
 
