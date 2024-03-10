@@ -7,6 +7,6 @@
     <title>DIY Framework</title>
 </head>
 <body>
-    <h1>Welcome Sir!</h1>
+    <h1>Hello World!</h1>
 </body>
 </html>

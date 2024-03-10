@@ -18,13 +18,21 @@ class Application
     public function __construct()
     {
         self::$app = $this;
-
-        $dotenv = Dotenv::createImmutable(ROOT_DIR);
-        $dotenv->load();
+        $this->loadDotEnv();
 
         $this->request = new Request();
         $this->response = new Response();
         $this->route = new Route();
+    }
+
+    public function loadDotEnv(): void
+    {
+        try {
+            $dotenv = Dotenv::createImmutable(ROOT_DIR);
+            $dotenv->load();
+        } catch (\Exception $e) {
+            echo 'Please remove the env.example file!';
+        }
     }
     
     public function run(): void
