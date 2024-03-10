@@ -104,7 +104,7 @@ class Route
 
     public function loadView(string $filename, array $values = []): string
     {
-        $filename = ROOT_DIR . "/app/resources/views/{$filename}.php";
+        $filename = ROOT_DIR . "/resources/views/{$filename}.php";
 
         if ( ! file_exists($filename)) {
             return "View file not found: {$filename}";
@@ -118,7 +118,7 @@ class Route
     
     public function loadLayout(): string | bool
     {
-        $filename = ROOT_DIR . "/app/resources/views/layouts/{$this->layout}.php";
+        $filename = ROOT_DIR . "/resources/views/layouts/{$this->layout}.php";
 
         if ( ! file_exists($filename)) {
             return false;
@@ -135,7 +135,7 @@ class Route
             return static::$routes[$method][$requestUrl];
         }
 
-        foreach (static::$routes['param'][$method] as $routePath => $callback) {
+        foreach (static::$routes['param'][$method] ?? [] as $routePath => $callback) {
             if ($this->routeParameter($routePath, $requestUrl)) {
                 return [$callback, $this->routeParameter($routePath, $requestUrl)];
             }
